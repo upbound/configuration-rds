@@ -1,0 +1,9 @@
+apiVersion: database.starter.org/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  name: my-db
+spec:
+  parameters:
+    region: east
+    size: small
+    storage: 20

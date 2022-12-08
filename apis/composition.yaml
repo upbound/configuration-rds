@@ -1,0 +1,54 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xpostgresqlinstances.aws.database.starter.org
+spec:
+  writeConnectionSecretsToNamespace: upbound-system
+  compositeTypeRef:
+    apiVersion: database.starter.org/v1alpha1
+    kind: XPostgreSQLInstance
+  resources:
+    - name: rdsinstance
+      base:
+        apiVersion: rds.aws.upbound.io/v1beta1
+        kind: Instance
+        spec:
+          forProvider:
+            region: us-east-1
+            instanceClass: db.t2.small
+            masterUsername: adminuser
+            engine: postgres
+            engineVersion: "12"
+            skipFinalSnapshotBeforeDeletion: true
+            publiclyAccessible: true
+          writeConnectionSecretToRef:
+            namespace: upbound-system
+      patches:
+        - fromFieldPath: "metadata.uid"
+          toFieldPath: "spec.writeConnectionSecretToRef.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-postgresql"
+        - fromFieldPath: "spec.parameters.region"
+          toFieldPath: "spec.forProvider.region"
+          transforms:
+          - type: map
+            map:
+              east: us-east-1
+              west: us-west-1
+        - fromFieldPath: "spec.parameters.size"
+          toFieldPath: "spec.forProvider.instanceClass"
+          transforms:
+          - type: map
+            map:
+              small: db.t2.small
+              medium: db.t2.medium
+              large: db.t2.large
+        - fromFieldPath: "spec.parameters.storage"
+          toFieldPath: "spec.forProvider.allocatedStorage"
+      connectionDetails:
+        - fromConnectionSecretKey: username
+        - fromConnectionSecretKey: password
+        - fromConnectionSecretKey: endpoint
+        - fromConnectionSecretKey: port

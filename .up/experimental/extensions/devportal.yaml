@@ -1,0 +1,6 @@
+apiVersion: extensions.upbound.io/v1alpha1
+kind: DevPortal
+metadata:
+  name: dev-portal
+spec:
+  enabled: true
