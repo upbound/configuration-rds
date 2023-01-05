@@ -21,6 +21,10 @@ spec:
             engineVersion: "12"
             skipFinalSnapshotBeforeDeletion: true
             publiclyAccessible: true
+            passwordSecretRef:
+              name: upbound-provider-aws-password
+              namespace: upbound-system
+              key: password
           writeConnectionSecretToRef:
             namespace: upbound-system
       patches:
