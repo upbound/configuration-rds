@@ -20,7 +20,7 @@ spec:
             engine: postgres
             engineVersion: "12"
             skipFinalSnapshotBeforeDeletion: true
-            publiclyAccessible: true
+            publiclyAccessible: false
             passwordSecretRef:
               name: upbound-provider-aws-password
               namespace: upbound-system
