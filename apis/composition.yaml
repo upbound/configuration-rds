@@ -16,7 +16,7 @@ spec:
           forProvider:
             region: us-east-1
             instanceClass: db.t2.small
-            masterUsername: adminuser
+            username: adminuser
             engine: postgres
             engineVersion: "12"
             skipFinalSnapshotBeforeDeletion: true
