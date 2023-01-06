@@ -19,7 +19,7 @@ spec:
             username: adminuser
             engine: postgres
             engineVersion: "12"
-            skipFinalSnapshotBeforeDeletion: true
+            skipFinalSnapshot: true
             publiclyAccessible: false
             passwordSecretRef:
               name: upbound-provider-aws-password
@@ -52,7 +52,11 @@ spec:
         - fromFieldPath: "spec.parameters.storage"
           toFieldPath: "spec.forProvider.allocatedStorage"
       connectionDetails:
-        - fromConnectionSecretKey: username
-        - fromConnectionSecretKey: password
-        - fromConnectionSecretKey: endpoint
-        - fromConnectionSecretKey: port
+        - fromFieldPath: "status.atProvider.endpoint"
+          name: endpoint
+        - fromFieldPath: "status.atProvider.address"
+          name: host
+        - fromFieldPath: "spec.forProvider.username"
+          name: username
+        - fromConnectionSecretKey: "attribute.password"
+          name: password
