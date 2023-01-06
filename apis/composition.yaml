@@ -19,7 +19,7 @@ spec:
             username: adminuser
             engine: postgres
             engineVersion: "12"
-            skipFinalSnapshotBeforeDeletion: true
+            skipFinalSnapshot: true
             publiclyAccessible: false
             passwordSecretRef:
               name: upbound-provider-aws-password
