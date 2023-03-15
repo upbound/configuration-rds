@@ -1,7 +1,3 @@
-# 
-
-This Configuration bundles an Upbound Cloud extension and an API definition. 
-
 # Crossplane configuration for "RDS as a Service"
 
 This repository contains the definition for a [Crossplane configuration](https://docs.crossplane.io/v1.11/concepts/packages/#configuration-packages) that bundles a set of API definitions. This configuration is a starting point for new users who are creating their first control plane in [Upbound](https://cloud.upbound.io).
