@@ -19,7 +19,7 @@ A custom API in [Crossplane](https://docs.crossplane.io/v1.11/getting-started/in
 For this configuration, the RDS API is defined by:
 
 - a [PostgreSQLInstance](/apis/definition.yaml) type
-- the PostgreSQLInstance is composed of a single [Instance](/apis/composition.yaml) resource.
+- the PostgreSQLInstance is [composed](/apis/composition.yaml) of a single Instance resource and is configured to write a password for the database as a secret `upbound-provider-aws-password` to the `upbound-system` namespace of the control plane.
 
 This repository also contains an [example claim](/.up/examples/postgres.yaml). You can apply this file on your control plane to invoke the RDS API and cause a database to be created.
 
