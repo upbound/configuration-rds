@@ -21,8 +21,8 @@ spec:
             engineVersion: "12"
             skipFinalSnapshot: true
             publiclyAccessible: false
+            autoGeneratePassword: true
             passwordSecretRef:
-              name: upbound-provider-aws-password
               namespace: upbound-system
               key: password
           writeConnectionSecretToRef:
@@ -34,6 +34,12 @@ spec:
             - type: string
               string:
                 fmt: "%s-postgresql"
+        - fromFieldPath: "metadata.uid"
+          toFieldPath: "spec.forProvider.passwordSecretRef.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-input"
         - fromFieldPath: "spec.parameters.region"
           toFieldPath: "spec.forProvider.region"
           transforms:
