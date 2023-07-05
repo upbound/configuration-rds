@@ -19,7 +19,9 @@ metadata:
       with your control plane’s APIs.
 spec:
   crossplane:
-    version: ">=v1.7.0-0"
+    version: ">=v1.12.0"
   dependsOn:
-    - provider: xpkg.upbound.io/upbound/provider-aws
-      version: ">=v0.32.0"
+    - provider: xpkg.upbound.io/upbound/provider-family-aws
+      version: ">=v0.37.0"
+    - provider: xpkg.upbound.io/upbound/provider-aws-rds
+      version: ">=v0.37.0"
