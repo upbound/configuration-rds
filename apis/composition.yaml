@@ -15,7 +15,7 @@ spec:
         spec:
           forProvider:
             region: us-east-1
-            instanceClass: db.t2.small
+            instanceClass: db.t3.small
             username: adminuser
             engine: postgres
             engineVersion: "12"
@@ -52,9 +52,9 @@ spec:
           transforms:
           - type: map
             map:
-              small: db.t2.small
-              medium: db.t2.medium
-              large: db.t2.large
+              small: db.t3.small
+              medium: db.t3.medium
+              large: db.t3.large
         - fromFieldPath: "spec.parameters.storage"
           toFieldPath: "spec.forProvider.allocatedStorage"
       connectionDetails:
